@@ -20,6 +20,7 @@ const getDogs = async (req, res) => {
         dbDogs = dbDogs.map(d => { //formateo a los perros de la base de datos para que coincidan con los datos pedidos
             let dog = d.dataValues
             return {
+                'id': dog.id,
                 'name': dog.name,
                 'temperament': (dog.temperament.map(t => t.dataValues.name)).join(', '), //formateo sus temperamentos para que coincidan con el formato de la API.
                 'weight': dog.weight
@@ -28,7 +29,8 @@ const getDogs = async (req, res) => {
 
         dogs = dogs.data.map(d => { //formateo a los perros de la API para que coincidan con los datos pedidos.
             return {
-                'imagen': d.image.url,
+                'id': d.id,
+                'image': d.image.url,
                 'name': d.name,
                 'temperament': d.temperament,
                 'weight': d.weight.metric
