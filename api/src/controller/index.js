@@ -33,15 +33,15 @@ const getDogs = async (req, res) => {
                 'image': d.image.url,
                 'name': d.name,
                 'temperament': d.temperament,
-                'weight': d.weight.metric
+                'weight': d.weight.metric.includes('NaN') ? 'Peso no especificado' : d.weight.metric
             }
         })
 
         dogs = dogs.concat(dbDogs)
 
         if(name){
-            const dog = dogs.find(d => d.name === name)
-            !dog ? res.status(404).send('Perro no encontrado!') : res.status(200).send(dog)
+            const dog = await dogs.filter(d => d.name.toLowerCase().includes(name.toLowerCase()))
+            dog.length ? res.status(200).send(dog) : res.status(404).send('No se encontró ningun perro :(')
         } else{
             res.status(200).send(dogs)
         }
@@ -63,13 +63,13 @@ const getDogById = async (req, res) => {
                     through: {attributes : []}
                   }
             })
-            
+        
             if(dbDog) return res.json({
-                'name': dbDog.dataValues.name,
-                'temperament': (dbDog.dataValues.temperament.map(t => t.dataValues.name)).join(', '),
-                'height': dbDog.dataValues.height,
-                'weight': dbDog.dataValues.weight,
-                'life_span': dbDog.dataValues.life_span
+                'name': dbDog.name,
+                'temperament': (dbDog.temperament.map(t => t.dataValues.name)).join(', ') ,
+                'height': dbDog.height,
+                'weight': dbDog.weight,
+                'life_span': dbDog.life_span
             })
             else return res.status(404).send('Perro no encontrado!')
         } catch (error) {
@@ -95,29 +95,27 @@ const addDog = async (req, res) => {
     const {name, height, weight, life_span, temperament} = req.body //temperament es un array de strings
     if(!name || !height || !weight || !life_span) return res.status(400).send('Falta enviar datos obligatorios')
     try{
-        const newDog = await Dog.create(req.body)
-        for(const temper of temperament){ //obtengo los temperamentos de la tabla Temper y se los añado al perro
-            const temperamentFound = await Temper.findAll({
+        const newDog = await Dog.create({name, height, weight, life_span})
+            const temperamentFound = await Temper.findAll({ //obtengo los temperamentos de la tabla Temper y se los añado al perro
                 where: {
-                    name: temper
+                    name: temperament
                 }
             })
             newDog.addTemperament(temperamentFound)
-        }
         res.status(201).json(newDog)
     } catch(e){
-        res.status(400).send(e)
+       console.log(e)
     }
 
 }
 
-const createTemperaments = async () => { //Agrego a la tabla Temper todos los temperamentos de la API
+const getTemperament = async (req, res) => { //Agrego a la tabla Temper todos los temperamentos de la API
     let dogs = await axios(`https://api.thedogapi.com/v1/breeds?${API_KEY}`)
     dogs.data.forEach(d => {
         if(d.temperament){
             let temperamentos = d.temperament.split(', ')
             temperamentos.map(async temper => {
-                await Temper.findOrCreate({
+                Temper.findOrCreate({
                     where: {
                         name: temper
                     }
@@ -126,14 +124,11 @@ const createTemperaments = async () => { //Agrego a la tabla Temper todos los te
             
         }
     })
-}
-
-const getTemperament = async (req, res) => {
     const tempers = await Temper.findAll()
     res.json(tempers)
 }
 
-createTemperaments()
+// puedo invocagetTemperament() esto lo hago solo si force:true, ya que lo requiero para crear perros, caso contrario no es necesario
 
 module.exports = {
     getDogs,

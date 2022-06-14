@@ -1,35 +1,39 @@
 import axios from 'axios'
 export const getDogs = () => {
     return function(dispatch){
-        axios('http://localhost:3001/dogs')
-        .then(dogs => dispatch({type: 'SET_DOGS', payload: dogs.data}))
+        axios.get('http://localhost:3001/dogs')
+        .then(dogs => dispatch({type: 'GET_DOGS', payload: dogs.data}))
+    }
+}
+
+export const getTemperaments = () => {
+    return function(dispatch){
+        axios.get('http://localhost:3001/temperaments')
+        .then(tempers => dispatch({type: 'GET_TEMPERAMENTS', payload:tempers.data}))
+    }
+}
+
+export const getDogsByName = (name) => {
+    return function(dispatch){
+        axios.get(`http://localhost:3001/dogs?name=${name}`)
+        .then(dogs => dispatch({type: 'GET_DOGS_BY_NAME', payload: dogs.data}))
+        .catch(e => alert('No se encontro ninguna raza!'))
     }
 }
 
 export const getDogsAlphabetically = (order) => {
-    return function(dispatch){
-        axios('http://localhost:3001/dogs')
-        .then(dogs => {
-            order === 'ascendant' 
-            ? dogs.data.sort((a,b) => a.name.localeCompare(b.name))
-            : dogs.data.sort((a,b) => b.name.localeCompare(a.name))
-            dispatch({type: 'SET_DOGS', payload: dogs.data})
-        })
-    }
+    return ({type: 'SORT_ALPHABETICALLY', payload: order})     
 }
 
 export const getDogsByWeight = (order) => {
-    return function(dispatch){
-        axios('http://localhost:3001/dogs')
-        .then(dogs => {
-            order === 'ascendant' 
-            ? dogs.data.sort((a,b) => {
-                return a.weight.split(' - ')[0] - b.weight.split(' - ')[0]
-              })
-            : dogs.data.sort((a,b) =>{
-                return parseInt(b.weight.split(' - ')[0]) - parseInt(a.weight.split(' - ')[0])
-              })
-            dispatch({type: 'SET_DOGS', payload: dogs.data})
-        })
-    }
+    return ({type: 'SORT_BY_WEIGHT', payload: order})  
 }
+
+export const getDogsByTemper = (temperament) => {
+    return ({type: 'FILTER_BY_TEMPERAMENT', payload: temperament})
+}
+
+export const getDogsByOrigin = (origin) => {
+    return ({type: 'FILTER_BY_ORIGIN', payload: origin})
+}
+

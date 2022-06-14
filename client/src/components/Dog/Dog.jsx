@@ -8,9 +8,9 @@ export default function Dog(props) {
             <div className={s.text}>
                 <span>{props.nombre}</span>
                 <br />
-                {props.temperamento ? <span>{props.temperamento.split(', ').slice(0,3).join(', ')}</span> : <span>Temperamento no especificado</span>}
+                {props.temperamento ? <span>{props.temperamento}</span> : <span>Temperamento no especificado</span>}
                 <br />
-                <span>{props.peso} kg</span>
+                {props.peso === 'Peso no especificado' ? <span>{props.peso}</span> : <span>{props.peso} kg</span>}
             </div>
         </div>
     )
