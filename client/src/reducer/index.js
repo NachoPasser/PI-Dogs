@@ -1,7 +1,8 @@
 const initialState = {
     dogs: [],
     temperaments: [],
-    fixedDogs: []
+    fixedDogs: [],
+    dogFromId: {}
 }
 
 export default function reducer(state=initialState, action){
@@ -24,7 +25,13 @@ export default function reducer(state=initialState, action){
                 ...state,
                 dogs: action.payload
             }
-            
+        
+        case 'GET_DOG_BY_ID':
+            return {
+                ...state,
+                dogFromId: action.payload
+            }
+        
         case 'SORT_ALPHABETICALLY':
             let sortedAlphabetically = action.payload === 'ascendant' 
             ? state.dogs.sort((a,b) => a.name.localeCompare(b.name))

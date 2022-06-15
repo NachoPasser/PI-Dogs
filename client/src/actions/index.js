@@ -21,6 +21,12 @@ export const getDogsByName = (name) => {
     }
 }
 
+export const getDogById = (id) => {
+    return function(dispatch){
+        axios.get(`http://localhost:3001/dogs/${id}`)
+        .then(dog => dispatch({type: 'GET_DOG_BY_ID', payload: dog.data}))
+    }
+}
 export const getDogsAlphabetically = (order) => {
     return ({type: 'SORT_ALPHABETICALLY', payload: order})     
 }

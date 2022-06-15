@@ -5,6 +5,7 @@ import {useDispatch, useSelector, shallowEqual} from 'react-redux'
 import Dog from '../Dog/Dog'
 import NavBar from '../NavBar/NavBar'
 import Paging from '../Paging/Paging'
+import Loader from '../Loader/Loader'
 
 export default function Home() {
     let dispatch = useDispatch()
@@ -27,11 +28,14 @@ export default function Home() {
         <div>
             <NavBar setPage={setNumberOfPage} setOrder={setOrder}/>
             <div className={s.cards}>
-                {dogs?.slice(
+                {dogs.length === 0 
+                ? <Loader/>
+                : dogs.slice(
                     (numberOfPage - 1) * cardsPerPage,
                     (numberOfPage - 1) * cardsPerPage + cardsPerPage
                 ).map(d => <Dog
                     key={d.id}
+                    id={d.id}
                     imagen={d.image}
                     nombre={d.name}
                     temperamento={d.temperament}

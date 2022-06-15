@@ -1,10 +1,15 @@
 import React from 'react'
 import s from './Dog.module.css'
+import { NavLink } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { getDogById } from '../../actions'
 export default function Dog(props) {
-    
+    let dispatch = useDispatch()
     return (
         <div className={s.card}>
-            <img className={s.img} src={props.imagen} alt="NOT FOUND" />
+            <NavLink to={`/dog/${props.id}`} onClick={() => dispatch(getDogById(props.id))}>
+            <img className={s.img} src={props.imagen} alt="NOT FOUND" />\
+            </NavLink>
             <div className={s.text}>
                 <span>{props.nombre}</span>
                 <br />

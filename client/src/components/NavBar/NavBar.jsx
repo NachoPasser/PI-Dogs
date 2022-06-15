@@ -1,8 +1,7 @@
-import React, { useState } from 'react'
-import { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import {getDogsAlphabetically, getDogsByName, getDogsByOrigin, getDogsByTemper, getDogsByWeight, getTemperaments } from '../../actions'
-
+import {getDogs, getDogsAlphabetically, getDogsByName, getDogsByOrigin, getDogsByTemper, getDogsByWeight, getTemperaments } from '../../actions'
+import { NavLink } from 'react-router-dom'
 export default function NavBar({setPage, setOrder}) {
     let dispatch = useDispatch()
     let temperaments = useSelector(state => state.temperaments)
@@ -25,10 +24,16 @@ export default function NavBar({setPage, setOrder}) {
     }
 
     const handleSelectTemper = (e) => {
+        if(e.target.value === 'Temperamentos'){
+            dispatch(getDogs())
+        }
         dispatch(getDogsByTemper(e.target.value))
     }
 
     const handleSelectOrigin= (e) => {
+        if(e.target.value === 'Origen'){
+            dispatch(getDogs())
+        }
         dispatch(getDogsByOrigin(e.target.value))
     }
 
@@ -41,16 +46,19 @@ export default function NavBar({setPage, setOrder}) {
             onChange={(e) => setName(e.target.value)}
             />
             <button onClick={() => dispatch(getDogsByName(name))}>Buscar</button>
+            <NavLink to='/create'>
+                <button>Crear raza</button>
+            </NavLink>
             <h1>Filtrar por:</h1>
             <select onChange={(e) => handleSelectTemper(e)} defaultValue='Temperamentos'>
-                <option value="Temperamentos" disabled>Temperamentos</option>
+                <option value="Temperamentos">Temperamentos</option>
                 {temperaments.length > 0 && temperaments.map(temper => 
                 <option value={temper.name} key={temper.id}>
                     {temper.name}
                 </option>)}
             </select>
-            <select onChange={(e) => handleSelectOrigin(e)} defaultValue='Raza'>
-                <option value="Raza" disabled>Raza</option>
+            <select onChange={(e) => handleSelectOrigin(e)} defaultValue='Origen'>
+                <option value="Origen">Origen</option>
                 <option value="API">API</option>
                 <option value="Created">Creada</option>
             </select>
