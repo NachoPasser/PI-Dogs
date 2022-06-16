@@ -1,7 +1,9 @@
-import React from 'react'
+import React, {setEffect}from 'react'
 import { useHistory } from 'react-router-dom'
 import s from './Landing.module.css'
-
+import dog1 from '../../images/dogBanner1.png'
+import dog2 from '../../images/dogBanner2.png'
+import bone from '../../images/hueso.png'
 function Landing() {
     const history = useHistory();
 
@@ -10,10 +12,17 @@ function Landing() {
     }
 
     return (
-        <div className={s.div}>
-            <h1 className={s.h1}>Dogs APP</h1>
-            <h2>Encuentra a tu compañero ideal!</h2>
-            <button onClick={() => handleClick()}>Ingresar</button>
+        <div>
+            <img id={s.dog1} src={dog1} alt="" />
+            <img id={s.dog2} src={dog2} alt="" width={800} />
+            <img id={s.bone} src={bone} alt="" />
+            <div className={s.banner}>
+             <div className={s.bannerText}>
+                <h1 className={s.h1}>Dogs APP</h1>
+             </div>
+            </div>
+
+            <button id={s.btn} onClick={() => handleClick()}>INGRESAR</button>
         </div>
     )
 

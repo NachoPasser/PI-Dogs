@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import s from './Home.module.css'
 import { getDogs } from '../../actions'
-import {useDispatch, useSelector, shallowEqual} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import Dog from '../Dog/Dog'
 import NavBar from '../NavBar/NavBar'
 import Paging from '../Paging/Paging'
@@ -42,7 +42,7 @@ export default function Home() {
                     peso={d.weight}
                     />)}
             </div>
-            <Paging setNumber={setNumberOfPage} max={maxNumberOfPages} />
+            <Paging setNumber={setNumberOfPage} max={maxNumberOfPages} actualPage={numberOfPage} />
 
             
         </div>

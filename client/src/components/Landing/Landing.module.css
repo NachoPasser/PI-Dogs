@@ -1,8 +1,72 @@
+body {
+    overflow: hidden; /* Hide scrollbars */
+    background-color: rgb(255, 237, 192);
+  }
+
 .h1{
-    color: black;
-    font-family: 'Permanent Marker', cursive;
+    color: white;
+    font-family: 'Fredoka One', cursive;
+    font-size: 150px;
 }
 
-.div{
-    background-image: url('../../images/dog-wallpaper-whatspaper.png');
+.banner{
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    justify-content: left;
+    height: 25%;
+    position: absolute;
+    background-color: burlywood;
+    top: 30%;
+    width: 100%;
+}
+
+.bannerText{
+    position: relative;
+    top: -100px;
+    left: 50px;
+}
+
+#dog1{
+    position: absolute;
+    z-index: 1;
+    display: block;
+    max-width:500px;
+    max-height: 270px;
+    top: -10px;
+}
+
+#dog2{
+    position: absolute;
+    z-index: 1;
+    top: -40px;
+
+    
+}
+
+#bone{
+    position: absolute;
+    bottom: 40px;
+    left: 40px;
+    max-width: 50%;
+    transform: rotate(-4deg);
+    /* max-height: ; */
+}
+
+#btn{
+    position: absolute;
+    font-family: 'Fredoka One', cursive;
+    color: rgb(56, 39, 4);
+    bottom: 145px;
+    left: 340px;
+    width: 200px;
+    height: 30px;
+    background-color: rgb(236, 193, 117);
+    outline: none;
+    border: solid rgb(234, 183, 94);
+}
+
+#btn:hover{
+    background-color: rgb(237, 173, 63);
+    cursor: pointer;
 }

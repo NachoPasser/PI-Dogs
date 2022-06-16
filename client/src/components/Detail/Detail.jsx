@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {useParams} from 'react-router-dom';
 import { getDogById } from '../../actions';
 import Loader from '../Loader/Loader';
+
 export default function Detail() {
     const {id} = useParams()
     let dispatch = useDispatch()

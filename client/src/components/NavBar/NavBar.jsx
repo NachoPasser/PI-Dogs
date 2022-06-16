@@ -1,39 +1,38 @@
-import React, { useState, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import {getDogs, getDogsAlphabetically, getDogsByName, getDogsByOrigin, getDogsByTemper, getDogsByWeight, getTemperaments } from '../../actions'
+import React, { useState} from 'react'
+import { useDispatch } from 'react-redux'
+import {getDogs, getDogsAlphabetically, getDogsByName, getDogsByOrigin, getDogsByTemper, getDogsByWeight} from '../../actions'
 import { NavLink } from 'react-router-dom'
+import SelectTemper from '../SelectTemper/SelectTemper'
+
 export default function NavBar({setPage, setOrder}) {
     let dispatch = useDispatch()
-    let temperaments = useSelector(state => state.temperaments)
     const [name, setName] = useState('')
 
-    useEffect(() => {
-        dispatch(getTemperaments())
-    }, [])
+    const handleSelectAlphabet = (e) => {
+        if(e.target.value === 'default') return dispatch(getDogs())
 
-    const handleClickAlphabet = (order) => {
         setPage(1)
-        dispatch(getDogsAlphabetically(order))
-        order === 'ascendant' ? setOrder('Ascending in alphabetical order!') : setOrder('Descending in alphabetical order!') //obligatorio para re-renderizar home
+        dispatch(getDogsAlphabetically(e.target.value))
+        e.target.value === 'ascendant' ? setOrder('Ascending in alphabetical order!') : setOrder('Descending in alphabetical order!') //obligatorio para re-renderizar home
     }
 
-    const handleClickWeight = (order) => {
+    const handleSelectWeight = (e) => {
+        if(e.target.value === 'default') return dispatch(getDogs())
+
         setPage(1)
-        dispatch(getDogsByWeight(order))
-        order === 'ascendant' ? setOrder('Ascending by weight order!') : setOrder('Descending by weight order!')
+        dispatch(getDogsByWeight(e.target.value))
+        e.target.value === 'ascendant' ? setOrder('Ascending by weight order!') : setOrder('Descending by weight order!')
     }
 
     const handleSelectTemper = (e) => {
-        if(e.target.value === 'Temperamentos'){
-            dispatch(getDogs())
-        }
+        if(e.target.value === 'Temperamentos') return dispatch(getDogs())
+        
         dispatch(getDogsByTemper(e.target.value))
     }
 
     const handleSelectOrigin= (e) => {
-        if(e.target.value === 'Origen'){
-            dispatch(getDogs())
-        }
+        if(e.target.value === 'Origen') return dispatch(getDogs())
+        
         dispatch(getDogsByOrigin(e.target.value))
     }
 
@@ -50,24 +49,24 @@ export default function NavBar({setPage, setOrder}) {
                 <button>Crear raza</button>
             </NavLink>
             <h1>Filtrar por:</h1>
-            <select onChange={(e) => handleSelectTemper(e)} defaultValue='Temperamentos'>
-                <option value="Temperamentos">Temperamentos</option>
-                {temperaments.length > 0 && temperaments.map(temper => 
-                <option value={temper.name} key={temper.id}>
-                    {temper.name}
-                </option>)}
-            </select>
+            <SelectTemper handleSelect={handleSelectTemper}/>
             <select onChange={(e) => handleSelectOrigin(e)} defaultValue='Origen'>
                 <option value="Origen">Origen</option>
                 <option value="API">API</option>
                 <option value="Created">Creada</option>
             </select>
             <h1>Ordenar por orden alfabetico:</h1>
-            <button onClick={() => handleClickAlphabet('ascendant')}>Ascendente</button>
-            <button onClick={() => handleClickAlphabet('descendant')}>Descendente</button>
+            <select onChange={(e) => handleSelectAlphabet(e)} defaultValue='default'>
+                <option value="default">Sin Orden</option>
+                <option value="ascendant">A-Z</option>
+                <option value="descendant">Z-A</option>
+            </select>
             <h1>Ordenar por peso:</h1>
-            <button onClick={() => handleClickWeight('ascendant')}>Ascendente</button>
-            <button onClick={() => handleClickWeight('descendant')}>Descendente</button>
+            <select onChange={(e) => handleSelectWeight(e)} defaultValue='default'>
+                <option value="default">Peso</option>
+                <option value="ascendant">ASC</option>
+                <option value="descendant">DESC</option>
+            </select>
         </div>
     )
 }

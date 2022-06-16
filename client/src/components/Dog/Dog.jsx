@@ -3,12 +3,14 @@ import s from './Dog.module.css'
 import { NavLink } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { getDogById } from '../../actions'
+import not_found from '../../images/not_found.png'
+
 export default function Dog(props) {
     let dispatch = useDispatch()
     return (
         <div className={s.card}>
             <NavLink to={`/dog/${props.id}`} onClick={() => dispatch(getDogById(props.id))}>
-            <img className={s.img} src={props.imagen} alt="NOT FOUND" />\
+            {!props.imagen ? <img className={s.img} src={not_found} alt="Imagen no encontrada." /> : <img className={s.img} src={props.imagen} alt='Imagen no encontrada.' />}
             </NavLink>
             <div className={s.text}>
                 <span>{props.nombre}</span>

@@ -1,4 +1,5 @@
 import axios from 'axios'
+
 export const getDogs = () => {
     return function(dispatch){
         axios.get('http://localhost:3001/dogs')

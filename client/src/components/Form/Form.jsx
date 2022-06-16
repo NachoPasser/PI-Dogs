@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import SelectTemper from '../SelectTemper/SelectTemper';
+import axios from 'axios';
+import { useHistory } from 'react-router-dom';
+
 export default function Form() {
+    let history = useHistory()
+    const [disabled, setDisabled] = useState(true)
+    const [tempers, setTempers] = useState([])
     const [form, setForm] = useState({
         name: '',
         min_height: '',
@@ -20,8 +27,18 @@ export default function Form() {
     })
 
     useEffect(() => {
-        //TO DO if props of form is not '' then setDisabled to false
-    }, [form])
+        let disabled = false
+
+        for(const prop in form){
+            if(!form[prop]) disabled = true
+            if(errors[prop]) disabled = true
+            if(tempers.length === 0) disabled = true
+        }
+
+        setDisabled(disabled)
+    }, [form, tempers])
+
+    
     function validate(form, field) {
         let error = {
             ...errors
@@ -36,8 +53,8 @@ export default function Form() {
             case 'max_height':
                 if(!form.max_height) error.max_height = 'Altura requerida'
                 else if(!/^[1-9][0-9]$|^[1-9]$|^1[0-4][0-9]|150$/.test(form.max_height)){
-                    error.max_height = 'Debe ser un numero entre 1 y 150.'
-                } else if(form.max_height < form.min_height) error.max_height = 'Debe ser mayor a la altura minima.'
+                    error.max_height = 'Debe ser un numero entero entre 1 y 150.'
+                } else if(parseInt(form.max_height) < parseInt(form.min_height)) error.max_height = 'Debe ser mayor a la altura minima.'
                 else{
                     if(error.min_height === 'Debe ser menor a la altura maxima.') error.min_height = ''
                     error.max_height = ''
@@ -47,52 +64,52 @@ export default function Form() {
             case 'min_height':
                 if(!form.min_height) error.min_height = 'Altura requerida'
                 else if(!/^[1-9][0-9]$|^[1-9]$|^1[0-4][0-9]|150$/.test(form.min_height)){
-                    error.min_height = 'Debe ser un numero entre 1 y 150.'
-                } else if(form.min_height > form.max_height) error.min_height = 'Debe ser menor a la altura maxima.'
+                    error.min_height = 'Debe ser un numero entero entre 1 y 150.'
+                } else if(parseInt(form.min_height) > parseInt(form.max_height)) error.min_height = 'Debe ser menor a la altura maxima.'
                 else{
                     if(error.max_height === 'Debe ser mayor a la altura minima.') error.max_height = ''
                     error.min_height = ''
                 }
                 break;
-
+                
             case 'max_weight':
                 if(!form.max_weight) error.max_weight = 'Peso requerido'
                 else if(!/^[1-9][0-9]$|^[1-9]$|^100$/.test(form.max_weight)){
-                    error.max_weight = 'Debe ser un numero entre 1 y 100.'
-                } else if(form.max_weight < form.min_weight) error.max_weight = 'Debe ser mayor al peso minimo.'
+                    error.max_weight = 'Debe ser un numero entero entre 1 y 100.'
+                } else if(parseInt(form.max_weight) < parseInt(form.min_weight)) error.max_weight = 'Debe ser mayor al peso minimo.'
                 else{
                     if(error.min_weight === 'Debe ser menor al peso maximo.') error.min_weight = ''
                     error.max_weight = ''
                 }
                 break;
-
-            case 'min_weight':
-                if(!form.min_weight) error.min_weight = 'Peso requerido'
-                else if(!/^[1-9][0-9]$|^[1-9]$|^100$/.test(form.min_weight)){
-                    error.min_weight = 'Debe ser un numero entre 1 y 100.'
-                } else if(form.min_weight > form.max_weight) error.min_weight = 'Debe ser menor al peso maximo.'
+                
+                case 'min_weight':
+                    if(!form.min_weight) error.min_weight = 'Peso requerido'
+                    else if(!/^[1-9][0-9]$|^[1-9]$|^100$/.test(form.min_weight)){
+                        error.min_weight = 'Debe ser un numero entero entre 1 y 100.'
+                } else if(parseInt(form.min_weight) > parseInt(form.max_weight)) error.min_weight = 'Debe ser menor al peso maximo.'
                 else{
                     if(error.max_weight === 'Debe ser mayor al peso minimo.') error.max_weight = ''
                     error.min_weight = ''
                 }
                 break;
-
-            case 'max_life_span':
-                if(!form.max_life_span) error.max_life_span = 'Edad requerida'
+                
+                case 'max_life_span':
+                    if(!form.max_life_span) error.max_life_span = 'Edad requerida'
                 else if(!/^[1-9]$|^1[0-9]$|^2[0-5]$/.test(form.max_life_span)){
-                    error.max_life_span = 'Debe ser un numero entre 1 y 25.'
-                } else if(form.max_life_span < form.min_life_span) error.max_life_span = 'Debe ser mayor a la edad minima.'
+                    error.max_life_span = 'Debe ser un numero entero entre 1 y 25.'
+                } else if(parseInt(form.max_life_span) < parseInt(form.min_life_span)) error.max_life_span = 'Debe ser mayor a la edad minima.'
                 else{
                     if(error.min_life_span === 'Debe ser menor a la edad maxima.') error.min_life_span = ''
                     error.max_life_span = ''
                 }
                 break;
-
-            case 'min_life_span':
+                
+                case 'min_life_span':
                 if(!form.min_life_span) error.min_life_span = 'Edad requerida'
                 else if(!/^[1-9]$|^1[0-9]$|^2[0-5]$/.test(form.min_life_span)){
-                    error.min_life_span = 'Debe ser un numero entre 1 y 25.'
-                } else if(form.min_life_span > form.max_life_span) error.min_life_span = 'Debe ser menor a la edad maxima.'
+                    error.min_life_span = 'Debe ser un numero entero entre 1 y 25.'
+                } else if(parseInt(form.min_life_span) > parseInt(form.max_life_span)) error.min_life_span = 'Debe ser menor a la edad maxima.'
                 else{
                     if(error.max_life_span === 'Debe ser mayor a la edad minima.') error.max_life_span = ''
                     error.min_life_span = ''
@@ -101,9 +118,15 @@ export default function Form() {
             
             default:
                 break;
+            }
+            
+            return error
+    }
+    
+    function handleSelectTemper(e){
+        if(e.target.value !== 'Temperamentos'){
+            setTempers(prev => [...prev, e.target.value])
         }
-
-        return error
     }
 
     function handleChange(e) {
@@ -117,8 +140,15 @@ export default function Form() {
     }
 
     function handleSubmit(){
-        if(form.name)
-        console.log(form)
+        const dog = {
+            name: form.name,
+            height: form.min_height !== form.max_height ? `${form.min_height} - ${form.max_height}` : `${form.min_height}`,
+            weight: form.min_weight !== form.max_weight ? `${form.min_weight} - ${form.max_weight}` : `${form.min_weight}`,
+            life_span: form.min_life_span !== form.max_life_span ? `${form.min_life_span} - ${form.max_life_span} years` : `${form.min_life_span} years`,
+            temperament: tempers 
+        }
+        axios.post('http://localhost:3001/dogs', dog)
+        history.push('/home')
     }
 
   return (
@@ -154,9 +184,17 @@ export default function Form() {
       <input type="number" name='max_life_span' onChange={handleChange}/>
       {!errors.max_life_span ? null : <span>{errors.max_life_span}</span>}
       <br />
-      
-      <input type="submit"/>
+      <SelectTemper handleSelect={handleSelectTemper}/>
+      <br />
+      <div>
+      <span>Temperamentos: </span>
+        {tempers.map(temper => 
+            <button onClick={() => setTempers(tempers.filter(t => t !== temper))}>{temper}, </button>
+        )}
+      </div>
+      {tempers.length === 0 ? <span>Un temperamento minimo requerido.</span> : null}
+      <br />
+      <input type="submit" disabled={disabled}/>
     </form>
   )
-  //agregar disabled al input y que funcione en base a un estado
 }
