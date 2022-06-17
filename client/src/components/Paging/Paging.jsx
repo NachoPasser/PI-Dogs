@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-
+import s from './Paging.module.css'
 export default function Paging({setNumber, max, actualPage}) {
     const [inputValue, setInputValue] = useState('')
     let pages = []
@@ -21,15 +21,18 @@ export default function Paging({setNumber, max, actualPage}) {
 
     return (
         <div>
-            <button disabled={actualPage === 1 ? true : false} onClick={() => setNumber(prev => prev - 1)}>{String.fromCharCode(8592)}</button>
-            <span>{actualPage} de {max}</span>
-            <button disabled={actualPage === max ? true : false} onClick={() => setNumber(prev => prev + 1)}>{String.fromCharCode(8594)}</button>
-            <br />
-            <input type="text" placeholder='Ir a la pagina...' value={inputValue} onChange={handleChange}/>
-            <button disabled={inputValue ? false : true} onClick={() =>{
-                setInputValue('')    
-                setNumber(parseInt(inputValue))}}
-            >IR</button>
+            <div className={s.arrowsContainer}>
+                <button className={s.arrows} disabled={actualPage === 1 ? true : false} onClick={() => setNumber(prev => prev - 1)}>🡰</button>
+                <span>{actualPage} de {max}</span>
+                <button className={s.arrows} disabled={actualPage === max ? true : false} onClick={() => setNumber(prev => prev + 1)}>🡲</button>
+            </div>
+            <div className={s.search}>
+                <input id={s.input} type="text" placeholder='Ir a la pagina...' value={inputValue} onChange={handleChange}/>
+                <button id={s.go} disabled={inputValue ? false : true} onClick={() =>{
+                    setInputValue('')    
+                    setNumber(parseInt(inputValue))}}
+                >🔍</button>
+            </div>
         </div>
     )
 }

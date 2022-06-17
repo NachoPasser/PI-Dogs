@@ -11,9 +11,10 @@ export default function Dog(props) {
         <div className={s.card}>
             <NavLink to={`/dog/${props.id}`} onClick={() => dispatch(getDogById(props.id))}>
             {!props.imagen ? <img className={s.img} src={not_found} alt="Imagen no encontrada." /> : <img className={s.img} src={props.imagen} alt='Imagen no encontrada.' />}
+            <span id={s.detail}>Ver detalles</span>
             </NavLink>
             <div className={s.text}>
-                <span>{props.nombre}</span>
+                <span id={s.name}>{props.nombre}</span>
                 <br />
                 {props.temperamento ? <span>{props.temperamento}</span> : <span>Temperamento no especificado</span>}
                 <br />

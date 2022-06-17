@@ -1,19 +1,58 @@
 .img{
-    max-width:50%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width:  250px;
+    height: 50%;
+    border-top-left-radius: 18px;
+    border-top-right-radius: 18px;
+    opacity: 1;
+    transition: .5s ease;
 }
 
 .card{
+    position: relative;
     width: 250px;
-    height: 350px;
+    height: 300px;
     display: flex;
     margin: 20px;
-    position: relative;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: solid 3px black;
+    border-radius: 18px;
+    background-color: cornsilk;
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.9);
+    transition: .5s ease;
+}
+
+.card:hover{
+    transform: scale(1.1);
+}
+
+.card:hover img{
+    opacity: 0.3;
+}
+
+.card:hover #detail{
+    opacity: 1;
+}
+
+#detail{
+    position: absolute;
+    top: 65px;
+    left: 11vh;
+    border: none;
+    color: black;
+    opacity: 0;
 }
 
 .text{
+    position: absolute;
+    line-height: 25px;
+    top: 50%;
     font-size: medium;
+}
+
+#name{
+    font-size: 20px;
 }

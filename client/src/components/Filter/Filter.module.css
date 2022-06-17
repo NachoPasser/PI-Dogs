@@ -1,0 +1,29 @@
+.filters{
+    background-color: rgba(252, 239, 206, 0.75);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    left: 5px;
+    top:22vh;
+    height: 42vh;
+    width: 280px;
+    font-family: 'Fredoka One', cursive;
+    font-size: 1em;
+}
+
+#filterTemper{
+    position: absolute;
+    top:98px;
+    z-index: 2;
+    font-family: 'Fredoka One', cursive;
+    font-size: 1em;
+}
+
+#filterOrigin{
+    position: absolute;
+    bottom: 85px;
+    z-index: 2;
+     font-family: 'Fredoka One', cursive;
+    font-size: 1em;
+}

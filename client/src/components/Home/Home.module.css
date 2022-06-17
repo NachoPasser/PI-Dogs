@@ -1,8 +1,66 @@
-
+.body{
+    background-image: url('../../images/paws2.png');
+    width: 98vw;
+    height: 110vh;
+}
 .cards{
+    position: absolute;
+    left: 300px;
+    top: 20vh;
     display: flex;
     flex-wrap: wrap;
-    margin: 20px;
+    width: 79vw;
+    height: 90vh;
     justify-content: center;
-    border: solid 3px black;
+    background: transparent;
 }
+
+.bone{
+    z-index: 1;
+    display: block;
+    width:200px;
+    height:200px;
+    margin:-90px;
+}
+
+.filterBones{
+    z-index: 1;
+    display: block;
+    position: absolute;
+    left: 136px;
+    top: 262px;
+}
+
+.sortsBones{
+    z-index: 1;
+    display: block;
+    position: absolute;
+    left: 136px;
+    bottom: 10px;
+}
+
+#create{
+    position: absolute;
+    left: 3cm;
+    top:3.1cm;
+    width: 60px;
+    font-size: 15px;
+    font-family: 'Fredoka One', cursive;
+    background-color: gray;
+    border: none;
+    cursor: pointer;
+    transition: .5s ease;
+}
+
+#create:hover{
+    background-color: lightgray;
+    transform: scale(1.1);
+}
+
+#dogHouse{
+    position: absolute;
+    width:160px;
+    height:160px;
+    left: 1.7cm;
+}
+

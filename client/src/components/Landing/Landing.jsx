@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom'
 import s from './Landing.module.css'
 import dog1 from '../../images/dogBanner1.png'
 import dog2 from '../../images/dogBanner2.png'
-import bone from '../../images/hueso.png'
+import bone from '../../images/bone1.png'
 function Landing() {
     const history = useHistory();
 
@@ -12,7 +12,7 @@ function Landing() {
     }
 
     return (
-        <div>
+        <div className={s.body}>
             <img id={s.dog1} src={dog1} alt="" />
             <img id={s.dog2} src={dog2} alt="" width={800} />
             <img id={s.bone} src={bone} alt="" />
