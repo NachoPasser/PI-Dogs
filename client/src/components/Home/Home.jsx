@@ -19,10 +19,10 @@ export default function Home() {
         alphabet: '',
         weight: '',
         temper: '',
-        origin: ''
+        origin: '',
+        name: ''
     })
     const [numberOfPage, setNumberOfPage] = useState(1)
-    const [order, setOrder] = useState('')
     let maxNumberOfPages = 0
     const cardsPerPage = 8
     
@@ -42,8 +42,9 @@ export default function Home() {
     return (
         <div className={s.body}>
             <img id={s.dogHouse} src={dogHouse} alt="" />
+            <Paging className={s.paging}setNumber={setNumberOfPage} max={maxNumberOfPages} actualPage={numberOfPage} />  
             <Link to='/create'>
-                <button id={s.create} >Crear raza</button>
+                <button id={s.create}>Crear raza</button>
             </Link>
             <div className={s.filterBones}>
                 <img className={s.bone} src={bone} alt="" />
@@ -53,7 +54,7 @@ export default function Home() {
                 <img className={s.bone} src={bone} alt="" />
                 <img className={s.bone} src={bone} alt="" />
             </div>
-            <SearchName/>
+            <SearchName state={select} setState={setSelect}/>
             <Filter state={select} setState={setSelect}/>
             <Sorts  state={select} setState={setSelect}/>
             <div className={s.cards}>
@@ -71,7 +72,6 @@ export default function Home() {
                     peso={d.weight}
                     />)}
             </div>
-            <Paging className={s.paging}setNumber={setNumberOfPage} max={maxNumberOfPages} actualPage={numberOfPage} />  
         </div>
     )
 }

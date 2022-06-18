@@ -1,7 +1,7 @@
 .body{
     background-image: url('../../images/paws2.png');
     width: 98vw;
-    height: 110vh;
+    height: 126vh;
 }
 .cards{
     position: absolute;
@@ -28,7 +28,7 @@
     display: block;
     position: absolute;
     left: 136px;
-    top: 262px;
+    top: 284px;
 }
 
 .sortsBones{
@@ -36,13 +36,13 @@
     display: block;
     position: absolute;
     left: 136px;
-    bottom: 10px;
+    bottom: -11.5vh;
 }
 
 #create{
     position: absolute;
-    left: 3cm;
-    top:3.1cm;
+    left: 3.1cm;
+    top:3.6cm;
     width: 60px;
     font-size: 15px;
     font-family: 'Fredoka One', cursive;
@@ -59,8 +59,8 @@
 
 #dogHouse{
     position: absolute;
-    width:160px;
-    height:160px;
-    left: 1.7cm;
+    width:182px;
+    height:182px;
+    left: 1.5cm;
 }
 

@@ -1,0 +1,203 @@
+#body{
+    background-image: url('../../images/interior.jpg');
+    background-size:contain;
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 200vh;
+    position: fixed;
+    top: -8cm;
+}
+
+#dog{
+    width: 200px;
+    height: 300px;
+    position: absolute;
+    top: 6px;
+    left: 22cm;
+    pointer-events: none;
+    z-index: 2;
+}
+
+#dog2{
+    width: 450px;
+    height: 500px;
+    position: absolute;
+    top: 38vh;
+    left: 0cm;
+}
+
+#sign{
+    width: 250px;
+    height: 200px;
+    position: absolute;
+    top: 0vh;
+    left: 1cm;
+}
+
+#btn{
+    font-size: 20px;
+    font-family: 'Fredoka One', cursive;
+    width: 200px;
+    height: 85px;
+    background-color: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    cursor: pointer;
+    top: 13vh;
+    left: 4vw;
+    z-index: 2;
+}
+
+#btn:hover{
+    color: gray;
+}
+
+#send{
+    font-family: 'Fredoka One', cursive;
+    height: 30px;
+    width: 100px;
+    color: white;
+    background-color: rgb(7, 181, 181);
+    position: absolute;
+    top: 70vh;
+    left: 59vw;
+    z-index: 2;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 2s ease;
+}
+
+#send:disabled{
+    color: gray;
+    border-radius: 5px;
+    background-color: rgb(6, 98, 98);
+}
+
+#send:hover{
+    background-color: rgb(4, 96, 96);
+}
+
+#form{
+    position: absolute;
+    top: 300px;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+#temperContainer{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-image: url('../../images/paws3.png');
+    background-color: rgb(249, 211, 165);
+    width: 250px;
+    border: 1px solid black;
+    top: 66.4vh;
+    height: 400px;
+    left: 22cm;
+}
+
+.btnContainer{
+    display: flex;
+    flex-wrap: wrap;
+    font-family: 'Fredoka One', cursive;
+    margin: 20px;
+    transition: .5s ease;
+}
+
+#temperError{
+    font-family: 'Fredoka One', cursive;
+    color: red;
+}
+
+.btnTemper{
+    width: fit-content;
+    font-size: 16px;
+    color: rgb(5, 5, 5);
+    font-family: 'Fredoka One', cursive;
+    background-color: rgb(248, 241, 125);
+    border: 1px solid;
+    margin: 5px;
+    border-radius: 5px;
+    outline: none;
+    transition: .2s ease;
+}
+
+.btnTemper:hover{
+    background-color: rgb(249, 240, 69);
+    border: 1px solid;
+    outline: none;
+    transform: scale(1.2);
+}
+
+#formContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: absolute;
+    border: 1px solid black;
+    background-image: url(../../images/paws3.png);
+    border-radius: 5px;
+    width: 350px;
+    height: 585px;
+    top: 3cm;
+    left: 12cm;
+}
+
+.formGroup{
+    transform: translateY(-10px);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 15px;
+    margin-top: 40px;
+    margin-left: 20px;
+}
+
+.formGroup span{
+    position: absolute;
+    transform: translateY(30px);
+    font-family: 'Fredoka One', cursive;
+    color: red;
+}
+
+.formGroup label{
+    font-size: 16px;
+    font-family: 'Fredoka One', cursive;
+    color:rgb(0, 0, 0);
+    display: block;
+    opacity: 1;
+    transform: translateY(-20px);
+    position: absolute;
+    pointer-events: none;
+}
+
+.input{
+    background-color: white;
+    box-shadow: none;
+    border: 2px solid;
+    height: 25px;
+    width: 8cm;
+    border-color: black;
+    border-style: none none solid none;
+}
+
+.errorInput{
+    background-color: white;
+    box-shadow: none;
+    border: 2px solid;
+    height: 25px;
+    width: 8cm;
+    border-color: red;
+    border-style: none none solid none;
+}
+
+.formGroup input:focus{
+    outline: none;
+}

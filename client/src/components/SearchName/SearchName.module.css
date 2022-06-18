@@ -4,3 +4,19 @@
     left: 30vw;
     z-index: 1;
 }
+
+#error{
+    color: red;
+    font-size: small;
+    top: 40px;
+    left: 5px;
+    position: absolute;
+}
+
+#inputError{
+    height: 30px;
+    width: 5cm;
+    border-radius: 20px;
+    border: 1px solid red;
+    font-family: 'Fredoka One', cursive;
+}

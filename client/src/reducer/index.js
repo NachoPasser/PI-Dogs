@@ -2,7 +2,8 @@ const initialState = {
     dogs: [],
     temperaments: [],
     fixedDogs: [],
-    dogFromId: {}
+    dogFromId: {},
+    dogNotFound: ''
 }
 
 export default function reducer(state=initialState, action){
@@ -11,7 +12,7 @@ export default function reducer(state=initialState, action){
             return {
                 ...state,
                 dogs: action.payload,
-                fixedDogs: action.payload
+                fixedDogs: [...action.payload]
             }
         
         case 'GET_TEMPERAMENTS':
@@ -24,6 +25,12 @@ export default function reducer(state=initialState, action){
             return {
                 ...state,
                 dogs: action.payload
+            }
+        
+        case 'DOG_NOT_FOUND': 
+            return{
+                ...state,
+                dogNotFound: action.payload
             }
         
         case 'GET_DOG_BY_ID':

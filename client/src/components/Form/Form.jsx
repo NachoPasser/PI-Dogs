@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import SelectTemper from '../SelectTemper/SelectTemper';
 import axios from 'axios';
-import { useHistory } from 'react-router-dom';
+import { useHistory} from 'react-router-dom';
+import s from './Form.module.css'
+import dog from '../../images/dogForm.png'
+import dog2 from '../../images/dogForm2.png'
+import sign from '../../images/sign.png'
 
 export default function Form() {
     let history = useHistory()
-    const [disabled, setDisabled] = useState(true)
+    const [disabledSend, setDisabledSend] = useState(true)
+    const [disabledTemper, setDisabledTemper] = useState(false)
     const [tempers, setTempers] = useState([])
     const [form, setForm] = useState({
         name: '',
@@ -35,7 +40,13 @@ export default function Form() {
             if(tempers.length === 0) disabled = true
         }
 
-        setDisabled(disabled)
+        if(tempers.length === 8){
+            setDisabledTemper(true);
+        } else{
+            setDisabledTemper(false);
+        }
+
+        setDisabledSend(disabled)
     }, [form, tempers])
 
     
@@ -150,51 +161,65 @@ export default function Form() {
         axios.post('http://localhost:3001/dogs', dog)
         history.push('/home')
     }
-
-  return (
-    <form onSubmit={(e) => {
-        e.preventDefault()
-        handleSubmit()
-    }} noValidate>
-      <label>Nombre: </label>
-      <input type="text" name="name" value={form.name} onChange={handleChange}  />
-      {!errors.name ? null : <span>{errors.name}</span>}
-      <br />
-      <label>Altura minima: </label>
-      <input type="number" name='min_height' onChange={handleChange}/>
-      {!errors.min_height ? null : <span>{errors.min_height}</span>}
-      <br />
-      <label>Altura maxima: </label>
-      <input type="number" name='max_height' onChange={handleChange} />
-      {!errors.max_height ? null : <span>{errors.max_height}</span>}
-      <br />
-      <label>Peso minimo: </label>
-      <input type="number" name='min_weight' onChange={handleChange}/>
-      {!errors.min_weight ? null : <span>{errors.min_weight}</span>}
-      <br />
-      <label>Peso maximo: </label>
-      <input type="number" name='max_weight' onChange={handleChange}/>
-      {!errors.max_weight ? null : <span>{errors.max_weight}</span>}
-      <br />
-      <label>Edad minima: </label>
-      <input type="number" name='min_life_span' onChange={handleChange}/>
-      {!errors.min_life_span ? null : <span>{errors.min_life_span}</span>}
-      <br />
-      <label>Edad maxima: </label>
-      <input type="number" name='max_life_span' onChange={handleChange}/>
-      {!errors.max_life_span ? null : <span>{errors.max_life_span}</span>}
-      <br />
-      <SelectTemper handleSelect={handleSelectTemper}/>
-      <br />
-      <div>
-      <span>Temperamentos: </span>
-        {tempers.map(temper => 
-            <button onClick={() => setTempers(tempers.filter(t => t !== temper))}>{temper}, </button>
-        )}
-      </div>
-      {tempers.length === 0 ? <span>Un temperamento minimo requerido.</span> : null}
-      <br />
-      <input type="submit" disabled={disabled}/>
-    </form>
+    
+    return (
+        <div id={s.body}>
+            <form id={s.form} onSubmit={(e) => {
+                e.preventDefault()
+                handleSubmit()
+            }}noValidate>
+                <img id={s.sign}src={sign} alt="" />
+                <img id={s.dog2}src={dog2} alt="" />
+                <img id={s.dog} src={dog} alt="" />
+                <button id={s.btn} onClick={() => history.push('/home')}>🡰Volver</button>
+                <div id={s.formContainer}>
+                    <div className={s.formGroup}>
+                        <input className={!errors.name ? s.input : s.errorInput} type="text" name="name" value={form.name} onChange={handleChange}  />
+                        <label>Nombre </label>
+                        {!errors.name ? null : <span>{errors.name}</span>}
+                    </div>
+                    <div className={s.formGroup}>
+                        <input className={!errors.min_height ? s.input : s.errorInput} type="number" name='min_height' onChange={handleChange}/>
+                        <label>Altura minima </label>
+                        {!errors.min_height ? null : <span>{errors.min_height}</span>}
+                    </div>
+                    <div className={s.formGroup}>
+                        <input className={!errors.max_height ? s.input : s.errorInput} type="number" name='max_height' onChange={handleChange} />
+                        <label>Altura maxima </label>
+                        {!errors.max_height ? null : <span>{errors.max_height}</span>}
+                    </div>
+                    <div className={s.formGroup}>
+                        <input className={!errors.min_weight ? s.input : s.errorInput} type="number" name='min_weight' onChange={handleChange}/>
+                        <label>Peso minimo </label>
+                        {!errors.min_weight ? null : <span>{errors.min_weight}</span>}
+                    </div>
+                    <div className={s.formGroup}>
+                        <input className={!errors.max_weight ? s.input : s.errorInput} type="number" name='max_weight' onChange={handleChange}/>
+                        <label>Peso maximo </label>
+                        {!errors.max_weight ? null : <span>{errors.max_weight}</span>}
+                    </div>
+                    <div className={s.formGroup}>
+                        <input className={!errors.min_life_span ? s.input : s.errorInput} type="number" name='min_life_span' onChange={handleChange}/>
+                        <label>Edad minima </label>
+                        {!errors.min_life_span ? null : <span>{errors.min_life_span}</span>}
+                    </div>
+                    <div className={s.formGroup}>
+                        <input className={!errors.max_life_span ? s.input : s.errorInput} type="number" name='max_life_span' onChange={handleChange}/>
+                        <label>Edad maxima </label>
+                        {!errors.max_life_span ? null : <span>{errors.max_life_span}</span>}
+                    </div>
+                </div>
+                <input id={s.send} type="submit" disabled={disabledSend}/>
+            </form>
+            <div id={s.temperContainer}>
+                    <SelectTemper disabled={disabledTemper} handleSelect={handleSelectTemper}/>
+                    <div className={s.btnContainer}>
+                        {tempers.map(temper => 
+                            <button className={s.btnTemper} onClick={() => setTempers(tempers.filter(t => t !== temper))}>{temper}</button>
+                            )}
+                    </div>
+                    {tempers.length === 0 ? <span id={s.temperError}>Un temperamento minimo requerido.</span> : null}
+            </div>
+        </div>
   )
 }

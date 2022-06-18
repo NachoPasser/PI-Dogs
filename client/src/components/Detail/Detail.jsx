@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import {useParams, useHistory} from 'react-router-dom';
 import { getDogById } from '../../actions';
@@ -10,6 +10,9 @@ export default function Detail() {
     let dispatch = useDispatch()
     useEffect(() => {
         dispatch(getDogById(id))
+        return function deleteDetail(){
+          dispatch(getDogById('NaN'))
+        }
     }, [])
 
     const dog = useSelector(state => state.dogFromId)

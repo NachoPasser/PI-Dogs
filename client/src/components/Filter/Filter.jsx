@@ -7,25 +7,27 @@ export default function Filter({state, setState}) {
     let dispatch = useDispatch()
 
     const handleSelectTemper = (e) => {
-        console.log(e.target.value)
         setState({
             alphabet: '',
             weight: '',
             origin: '',
+            name: '',
             temper: e.target.value
         })
 
-        if(e.target.value === 'Temperamentos') return dispatch(getDogs())
+        if(e.target.value === 'Temperamentos'){ 
+            return dispatch(getDogs())
+        }
         
         dispatch(getDogsByTemper(e.target.value))
     }
 
     const handleSelectOrigin= (e) => {
-        console.log(e.target.value)
         setState({
             alphabet: '',
             weight: '',
             origin: e.target.value,
+            name: '',
             temper: ''
         })
         if(e.target.value === 'Origen') return dispatch(getDogs())

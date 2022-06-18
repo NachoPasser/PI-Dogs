@@ -2,7 +2,7 @@ import React, {useEffect} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { getTemperaments } from '../../actions'
 
-export default function SelectTemper({handleSelect, style, value}){
+export default function SelectTemper({handleSelect, style, value, disabled}){
     let dispatch = useDispatch()
     const temperaments = useSelector(state => state.temperaments)
     
@@ -12,7 +12,7 @@ export default function SelectTemper({handleSelect, style, value}){
 
   return (
     <div id={style}>
-        <select style={{"fontFamily": 'Fredoka One'}} onChange={(e) => handleSelect(e)} value={value}>
+        <select disabled={disabled} style={{"fontFamily": 'Fredoka One'}} onChange={(e) => handleSelect(e)} value={value}>
                 <option  value="Temperamentos">Temperamentos</option>
                 {temperaments.length > 0 && temperaments.map(temper => 
                 <option value={temper.name} key={temper.id}>

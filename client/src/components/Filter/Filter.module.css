@@ -1,11 +1,11 @@
 .filters{
-    background-color: rgba(252, 239, 206, 0.75);
+    background-color: rgb(249, 223, 162, 0.80);
     display: flex;
     flex-direction: column;
     align-items: center;
     position: absolute;
     left: 5px;
-    top:22vh;
+    top:25vh;
     height: 42vh;
     width: 280px;
     font-family: 'Fredoka One', cursive;
