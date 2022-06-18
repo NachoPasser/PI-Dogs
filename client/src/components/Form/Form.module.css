@@ -94,7 +94,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-image: url('../../images/paws3.png');
+    background-image: url('../../images/paws2.png');
     background-color: rgb(249, 211, 165);
     width: 250px;
     border: 1px solid black;
@@ -142,7 +142,7 @@
     align-items: flex-start;
     position: absolute;
     border: 1px solid black;
-    background-image: url(../../images/paws3.png);
+    background-image: url(../../images/paws2.png);
     border-radius: 5px;
     width: 350px;
     height: 585px;
