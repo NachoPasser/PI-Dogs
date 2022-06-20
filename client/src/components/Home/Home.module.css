@@ -41,26 +41,39 @@
 
 #create{
     position: absolute;
-    left: 3.1cm;
-    top:3.6cm;
-    width: 60px;
+    left: 3.12cm;
+    top:3.85cm;
+    width: 56px;
+    color: white;
     font-size: 15px;
     font-family: 'Fredoka One', cursive;
-    background-color: gray;
+    background-color: rgb(95, 95, 95);
     border: none;
     cursor: pointer;
     transition: .5s ease;
 }
 
 #create:hover{
+    color: black;
     background-color: lightgray;
-    transform: scale(1.1);
+    transform: scale(1.02);
 }
 
 #dogHouse{
     position: absolute;
-    width:182px;
-    height:182px;
-    left: 1.5cm;
+    width:200px;
+    height:192px;
+    left: 1.2cm;
 }
+
+#loadingText{
+    position : absolute;
+    font-family: 'Fredoka One', cursive; 
+    font-size: 60px;
+    left: 32vw;
+    top: 55vh;
+}
+
+
+
 

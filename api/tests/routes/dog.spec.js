@@ -27,11 +27,11 @@ describe('Dogs routes', () => {
       })
     }));
   describe('GET /dogs', () => {
-    it('should get 200', () => {
-      agent.get('/dogs').expect(200)
-    }
-    );
-  });
+    it('should', async () => {
+      let dog = await agent.get('/dogs?name=affenpinscher')
+      // console.log(dog.body)
+    })
+  })
   describe('GET /dogs/:id', () => {
     it('should get 200', () => 
     agent.get('/dogs/11111111-1111-1111-1111-111111111111').expect(200)
@@ -48,6 +48,23 @@ describe('Dogs routes', () => {
         life_span: '5 - 15 years'
       })
     })
-    
+
+    it('should get 400 if id is invalid', async () => {
+      let dog = await agent.get('/dogs/NaN')
+      expect(dog.error.text).equal('La id introducida no es valida!')
+      expect(dog.error.status).equal(400)
+    })
+
+    it('should get 404 if dog from database not found', async () => {
+      let dog = await agent.get('/dogs/22222222-2222-2222-2222-222222222222')
+      expect(dog.error.text).equal('Perro no encontrado!')
+      expect(dog.error.status).equal(404)
+    })
+
+    it('should get 404 if dog from API not found', async () => {
+      let dog = await agent.get('/dogs/404')
+      expect(dog.error.text).equal('Perro no encontrado!')
+      expect(dog.error.status).equal(404)
+    })
   })
 });

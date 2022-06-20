@@ -6,8 +6,6 @@ export default function Sorts({state, setState}) {
   let dispatch = useDispatch()
 
   const handleSelectAlphabet = (e) => {
-    
-    console.log(e.target.value)
 
     setState({
         ...state,
@@ -23,7 +21,6 @@ export default function Sorts({state, setState}) {
 
   const handleSelectWeight = (e) => {
 
-    console.log(e.target.value)
     setState({
         ...state,
         weight: e.target.value,
@@ -38,9 +35,9 @@ export default function Sorts({state, setState}) {
 
   return (
     <div className={s.sorts}>
-                <h1>Ordenes</h1>
+                <h1>Órdenes</h1>
                 <select id={s.sortAlpha} onChange={(e) => handleSelectAlphabet(e)} value={state.alphabet}>
-                    <option value="default">Alfabetico</option>
+                    <option value="default">Alfabético</option>
                     <option value="ascendant">A-Z</option>
                     <option value="descendant">Z-A</option>
                 </select>

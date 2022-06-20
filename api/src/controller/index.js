@@ -27,13 +27,13 @@ const getDogs = async (req, res) => {
             }
         })
 
-        dogs = dogs.data.map(d => { //formateo a los perros de la API para que coincidan con los datos pedidos.
+        dogs = dogs.data.map(dog => { //formateo a los perros de la API para que coincidan con los datos pedidos.
             return {
-                'id': d.id,
-                'image': d.image.url,
-                'name': d.name,
-                'temperament': d.temperament,
-                'weight': d.weight.metric.includes('NaN') ? 'Peso no especificado' : d.weight.metric
+                'id': dog.id,
+                'image': dog.image.url,
+                'name': dog.name,
+                'temperament': dog.temperament,
+                'weight': dog.weight.metric.includes('NaN') ? 'Peso no especificado' : dog.weight.metric
             }
         })
 
@@ -86,7 +86,7 @@ const getDogById = async (req, res) => {
         'name': dog.name,
         'temperament': dog.temperament,
         'height' :dog.height.metric,
-        'weight':dog.weight.metric,
+        'weight':dog.weight.metric.includes('NaN') ? 'Peso no especificado' : dog.weight.metric,
         'life_span': dog.life_span
     })
 }
@@ -96,15 +96,15 @@ const addDog = async (req, res) => {
     if(!name || !height || !weight || !life_span) return res.status(400).send('Falta enviar datos obligatorios')
     try{
         const newDog = await Dog.create({name, height, weight, life_span})
-            const temperamentFound = await Temper.findAll({ //obtengo los temperamentos de la tabla Temper y se los añado al perro
+        const temperamentFound = await Temper.findAll({ //obtengo los temperamentos de la tabla Temper y se los añado al perro
                 where: {
                     name: temperament
                 }
             })
-            newDog.addTemperament(temperamentFound)
+        newDog.addTemperament(temperamentFound)
         res.status(201).json(newDog)
     } catch(e){
-       console.log(e)
+       res.status(400).send(e)
     }
 
 }
@@ -131,7 +131,7 @@ const getTemperament = async (req, res) => { //Agrego a la tabla Temper todos lo
     }
 }
 
-getTemperament() //esto lo hago solo si force:true, ya que lo requiero para crear perros, caso contrario no es necesario
+// getTemperament() esto lo hago solo si force:true, ya que lo requiero para crear perros, caso contrario no es necesario
 
 module.exports = {
     getDogs,

@@ -59,13 +59,15 @@
     left: 340px;
     width: 200px;
     height: 30px;
-    background-color: rgb(236, 193, 117);
+    background-color: rgb(253, 253, 253);
     outline: none;
-    border: solid rgb(234, 183, 94);
+    border: none;
     transition: .5s ease;
 }
 
 #btn:hover{
-    background-color: rgb(237, 173, 63);
+    background-color: rgb(250, 161, 7);
+    color: white;
     cursor: pointer;
+    transform: scale(1.3);
 }

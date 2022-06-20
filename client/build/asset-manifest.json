@@ -1,0 +1,34 @@
+{
+  "files": {
+    "main.css": "/static/css/main.8cb3e51d.chunk.css",
+    "main.js": "/static/js/main.4b385cb6.chunk.js",
+    "main.js.map": "/static/js/main.4b385cb6.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.7bddc3ac.js",
+    "runtime-main.js.map": "/static/js/runtime-main.7bddc3ac.js.map",
+    "static/js/2.bbc4603f.chunk.js": "/static/js/2.bbc4603f.chunk.js",
+    "static/js/2.bbc4603f.chunk.js.map": "/static/js/2.bbc4603f.chunk.js.map",
+    "static/js/3.b6e46fc5.chunk.js": "/static/js/3.b6e46fc5.chunk.js",
+    "static/js/3.b6e46fc5.chunk.js.map": "/static/js/3.b6e46fc5.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.8cb3e51d.chunk.css.map": "/static/css/main.8cb3e51d.chunk.css.map",
+    "static/js/2.bbc4603f.chunk.js.LICENSE.txt": "/static/js/2.bbc4603f.chunk.js.LICENSE.txt",
+    "static/media/bone1.0d470a4e.png": "/static/media/bone1.0d470a4e.png",
+    "static/media/bone2.ae000d99.png": "/static/media/bone2.ae000d99.png",
+    "static/media/dog-house.0022d814.png": "/static/media/dog-house.0022d814.png",
+    "static/media/dogBanner1.b9be23fd.png": "/static/media/dogBanner1.b9be23fd.png",
+    "static/media/dogBanner2.90546b31.png": "/static/media/dogBanner2.90546b31.png",
+    "static/media/dogForm.4c65c033.png": "/static/media/dogForm.4c65c033.png",
+    "static/media/dogForm2.f96479c4.png": "/static/media/dogForm2.f96479c4.png",
+    "static/media/gif.a5a155a8.gif": "/static/media/gif.a5a155a8.gif",
+    "static/media/Form.module.css": "/static/media/paws2.dc08e6c8.png",
+    "static/media/not_found.c3e75184.png": "/static/media/not_found.c3e75184.png",
+    "static/media/Detail.module.css": "/static/media/paws1.b39c61c4.png",
+    "static/media/sign.6164604d.png": "/static/media/sign.6164604d.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.7bddc3ac.js",
+    "static/js/2.bbc4603f.chunk.js",
+    "static/css/main.8cb3e51d.chunk.css",
+    "static/js/main.4b385cb6.chunk.js"
+  ]
+}

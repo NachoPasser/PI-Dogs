@@ -59,7 +59,7 @@ export default function Home() {
             <Sorts  state={select} setState={setSelect}/>
             <div className={s.cards}>
                 {dogs.length === 0 
-                ? <Loader/>
+                ? <Loader textStyle={s.loadingText}/>
                 : dogs.slice(
                     (numberOfPage - 1) * cardsPerPage,
                     (numberOfPage - 1) * cardsPerPage + cardsPerPage

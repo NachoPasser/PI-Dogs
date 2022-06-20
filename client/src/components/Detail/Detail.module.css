@@ -26,10 +26,14 @@
     background-color: rgb(242, 208, 70);
 }
 
-#loader{
+#loaderImg{
     position: absolute;
     right: 240px;
     bottom: -50px;
+}
+
+#loaderText{
+    display: none;
 }
 
 .card{
