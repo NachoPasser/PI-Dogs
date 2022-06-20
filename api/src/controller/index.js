@@ -131,7 +131,7 @@ const getTemperament = async (req, res) => { //Agrego a la tabla Temper todos lo
     }
 }
 
-// getTemperament() esto lo hago solo si force:true, ya que lo requiero para crear perros, caso contrario no es necesario
+// getTemperament() esto lo hago solo si force:true, ya que lo requiero para crear perros, caso contrario no es necesario 
 
 module.exports = {
     getDogs,
