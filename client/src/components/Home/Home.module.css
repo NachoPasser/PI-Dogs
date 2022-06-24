@@ -74,6 +74,13 @@
     top: 55vh;
 }
 
+#not_found{
+    position : absolute;
+    font-family: 'Fredoka One', cursive; 
+    font-size: 60px;
+    left: 15vw;
+    top: 35vh;
+}
 
 
 

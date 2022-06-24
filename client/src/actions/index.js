@@ -18,7 +18,7 @@ export const getDogsByName = (name) => {
     return function(dispatch){
         axios.get(`http://localhost:3001/dogs?name=${name}`)
         .then(dogs => {
-            dispatch({type: 'DOG_NOT_FOUND', payload: '' + ''})
+            dispatch({type: 'DOG_NOT_FOUND', payload: ''})
             dispatch({type: 'GET_DOGS_BY_NAME', payload: dogs.data})})
         .catch(e => {
             dispatch(getDogs())
@@ -30,9 +30,7 @@ export const getDogById = (id) => {
     return function(dispatch){
         axios.get(`http://localhost:3001/dogs/${id}`)
         .then(dog => dispatch({type: 'GET_DOG_BY_ID', payload: dog.data}))
-        .catch(e =>{ 
-            console.log('GG')
-            dispatch({type: 'GET_DOG_BY_ID', payload: {}})})
+        .catch(e => dispatch({type: 'GET_DOG_BY_ID', payload: {}}))
     }
 }
 export const getDogsAlphabetically = (order) => {

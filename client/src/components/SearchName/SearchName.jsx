@@ -6,7 +6,7 @@ import s from './SearchName.module.css'
 export default function SearchName({state, setState}) {
   let dispatch = useDispatch()
   let error = useSelector(state => state.dogNotFound)
-
+  const ERROR = 'No se encontró la raza buscada!'
   const handleClick = () => {
     setState({ ...state, alphabet: '', weight: '', temper: '', origin: ''})
     if(!state.name) dispatch(getDogs())
@@ -15,8 +15,8 @@ export default function SearchName({state, setState}) {
   
   return (
     <div className={s.search}>
-                <input id={!error ? sp.input : s.inputError} type="text"  placeholder='Nombre de raza...' value={state.name} onChange={(e) => setState({...state, name: e.target.value})}/>
-                {error ? <span id={s.error}>{error}</span> : ""}
+                <input id={error === ERROR ? s.inputError : sp.input } type="text" placeholder='Nombre de raza...' value={state.name} onChange={(e) => setState({...state, name: e.target.value})}/>
+                {error === ERROR ? <span id={s.error}>{error}</span> : ""}
                 <button id={sp.go} onClick={handleClick}>🔍</button>
     </div>
   )

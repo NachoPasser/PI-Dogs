@@ -93,9 +93,17 @@ export default function reducer(state=initialState, action){
             let filteredByOrigin = action.payload === 'API'
             ? state.fixedDogs.filter(dog => !isNaN(Number(dog.id)))
             : state.fixedDogs.filter(dog => isNaN(Number(dog.id)))
-            return {
-                ...state,
-                dogs: filteredByOrigin
+            if(!filteredByOrigin.length) {
+                return {
+                    ...state,
+                    dogs: filteredByOrigin,
+                    dogNotFound: 'No se encontró ninguna raza!'
+                }
+            } else{
+                return {
+                    ...state,
+                    dogs: filteredByOrigin
+                }
             }
 
         default:

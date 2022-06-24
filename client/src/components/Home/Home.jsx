@@ -15,6 +15,7 @@ import { Link } from 'react-router-dom'
 export default function Home() {
     let dispatch = useDispatch()
     let dogs = useSelector((state) => state.dogs)
+    let not_found = useSelector((state) => state.dogNotFound)
     const [select, setSelect] = useState({
         alphabet: '',
         weight: '',
@@ -25,8 +26,7 @@ export default function Home() {
     const [numberOfPage, setNumberOfPage] = useState(1)
     let maxNumberOfPages = 0
     const cardsPerPage = 8
-    
-    
+
     useEffect(() => {
         dispatch(getDogs())
     }, [])
@@ -36,7 +36,7 @@ export default function Home() {
     }, [dogs])
     
     if(dogs.length > 0) maxNumberOfPages = Math.ceil(dogs.length / cardsPerPage)
-     
+    
     //(numberOfPage - 1) * cardsPerPage 0*8=0, 1*8=8, 2*8=16
     //(numberOfPage - 1) * cardsPerPage + cardsPerPage 0*8+8 = 8, 1*8+8=16, 2*8 + 8=24
     return (
@@ -58,8 +58,11 @@ export default function Home() {
             <Filter state={select} setState={setSelect}/>
             <Sorts  state={select} setState={setSelect}/>
             <div className={s.cards}>
-                {dogs.length === 0 
+                
+                {dogs.length === 0
+                ? not_found === ''
                 ? <Loader textStyle={s.loadingText}/>
+                : <span id={s.not_found}>No se encontró ningun perro!</span>
                 : dogs.slice(
                     (numberOfPage - 1) * cardsPerPage,
                     (numberOfPage - 1) * cardsPerPage + cardsPerPage
