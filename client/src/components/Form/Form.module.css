@@ -1,53 +1,36 @@
 #body{
-    background-image: url('../../images/interior.jpg');
+    background-image: url('../../images/paws1.png');
+    display: flex;
+    height: 2000px;
+    width: 3000px;
+    position: fixed;
     background-size:contain;
     background-repeat: no-repeat;
-    width: 100vw;
-    height: 200vh;
-    position: fixed;
-    top: -8cm;
 }
 
 #dog{
     width: 200px;
     height: 300px;
     position: absolute;
-    top: 6px;
-    left: 22cm;
+    transform: translateY(-239px);
     pointer-events: none;
     z-index: 2;
-}
-
-#dog2{
-    width: 450px;
-    height: 500px;
-    position: absolute;
-    top: 38vh;
-    left: 0cm;
-}
-
-#sign{
-    width: 250px;
-    height: 200px;
-    position: absolute;
-    top: 0vh;
-    left: 1cm;
 }
 
 #btn{
     font-size: 20px;
     font-family: 'Fredoka One', cursive;
-    width: 200px;
-    height: 85px;
-    background-color: transparent;
-    border: none;
+    width: 120px;
+    height: 50px;
+    background-color: white;
+    border: 1px solid black;
     display: flex;
     align-items: center;
     justify-content: center;
     position: absolute;
     cursor: pointer;
-    top: 13vh;
-    left: 4vw;
+    top: 0vh;
+    left: -12vw;
     z-index: 2;
 }
 
@@ -55,16 +38,22 @@
     color: gray;
 }
 
+@media (max-width: 900px) {
+    #btn{
+        top: -10vh;
+        left: 20vw;
+    }
+}
+
 #send{
     font-family: 'Fredoka One', cursive;
+    position: absolute;
     height: 30px;
     width: 100px;
     color: white;
     background-color: rgb(7, 181, 181);
-    position: absolute;
-    top: 70vh;
-    left: 59vw;
-    z-index: 2;
+    transform: translateY(-170px) translateX(250px);
+    z-index: 4;
     border-radius: 5px;
     cursor: pointer;
     transition: 2s ease;
@@ -81,15 +70,21 @@
 }
 
 #form{
-    position: absolute;
-    top: 300px;
-    left: 0;
+    position: relative;
+}
+
+.table{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
     width: 100vw;
     height: 100vh;
 }
 
 #temperContainer{
-    position: absolute;
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -97,10 +92,11 @@
     background-image: url('../../images/paws2.png');
     background-color: rgb(249, 211, 165);
     width: 250px;
+    margin-left: 10px;
+    z-index: 1;
     border: 1px solid black;
-    top: 66.4vh;
+    border-radius: 5px;
     height: 400px;
-    left: 22cm;
 }
 
 .btnContainer{
@@ -137,17 +133,15 @@
 }
 
 #formContainer{
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    position: absolute;
     border: 1px solid black;
     background-image: url(../../images/paws2.png);
     border-radius: 5px;
     width: 350px;
     height: 585px;
-    top: 3cm;
-    left: 12cm;
 }
 
 .formGroup{

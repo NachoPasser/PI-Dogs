@@ -1,6 +1,7 @@
 import React from 'react'
 import s from './Sorts.module.css'
 import { useDispatch } from 'react-redux'
+import bone from '../../images/bone2.png'
 import { getDogsByWeight, getDogsAlphabetically } from '../../actions'
 export default function Sorts({state, setState}) {
   let dispatch = useDispatch()
@@ -46,6 +47,10 @@ export default function Sorts({state, setState}) {
                     <option value="ascendant">ASC</option>
                     <option value="descendant">DESC</option>
                 </select>
+                <div className={s.sortsBones}>
+                    <img className={s.bone1} src={bone} alt="" />
+                    <img className={s.bone2} src={bone} alt="" />
+                </div>
             </div>
   )
 }

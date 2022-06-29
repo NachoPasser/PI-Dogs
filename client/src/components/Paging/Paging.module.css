@@ -1,14 +1,20 @@
+.paging{
+    position: absolute;
+    left: -5px;
+    height: 50%;
+    width: 100%;
+}
 .arrowsContainer{
-    position: relative;
-    width: 50%;
-    left: 14cm;
-    top: 7vw;
+    position: absolute;
+    height: 50px;
+    left: 45%;
     font-family: 'Fredoka One', cursive;
 }
 
 .arrows{
     margin: 10px;
     font-size: 20px;
+    width: 30px;
     border: none;
     color: white;
     background-color: rgb(250, 146, 11);
@@ -24,10 +30,9 @@
 }
 
 .search{
-    position: relative;
     width: fit-content;
-    left: 29cm;
-    top: 3vh;
+    position: absolute;
+    left: 70%;
 }
 
 #input{

@@ -2,6 +2,7 @@
     background-color: rgb(255, 237, 192);
     width: 100vw;
     height: 100vh;
+    position: fixed;
   }
   
 .h1{
@@ -14,55 +15,80 @@
     display: flex;
     align-items: start;
     flex-direction: column;
-    justify-content: left;
-    height: 25%;
-    position: absolute;
+    justify-content: center;
+    position: fixed;
     background-color: burlywood;
-    top: 30%;
+    top: 200px;
     width: 100%;
 }
 
 .bannerText{
     position: relative;
-    top: -100px;
     left: 50px;
 }
 
 #dog1{
     position: absolute;
+    top: -235px;
+    left: 0;
     z-index: 1;
-    display: block;
-    max-width:500px;
-    max-height: 270px;
-    top: -10px;
+    max-width: 50%;
 }
 
 #dog2{
     position: fixed;
     z-index: 1;
     top: -40px; 
+    right: -2%;
+    width: 900px;
 }
 
 #bone{
-    position: absolute;
+    position: relative;
     bottom: 40px;
-    left: 40px;
-    max-width: 50%;
+    max-width: 1000px;
     transform: rotate(-4deg);
 }
 
+.divBone{
+    position: relative;
+    width: fit-content;
+    top: 450px;
+    left: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width: 1400px) {
+    #dog2{
+       display: none;
+
+    }
+
+    .divBone{
+        position: relative;
+        border: 3px solid red;
+        width: fit-content;
+        top: 450px;
+        left: 0px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
 #btn{
     position: absolute;
     font-family: 'Fredoka One', cursive;
     color: rgb(56, 39, 4);
-    bottom: 145px;
-    left: 340px;
+    top: 85px;
     width: 200px;
-    height: 30px;
+    height: 30px; 
     background-color: rgb(253, 253, 253);
     outline: none;
     border: none;
     transition: .5s ease;
+    z-index: 1000;
 }
 
 #btn:hover{

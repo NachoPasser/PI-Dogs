@@ -2,22 +2,34 @@
     display: flex;
     flex-direction: column;
     background-image: url('../../images/paws1.png');
-    width: 100vw;
-    height: 200vh;
+    height: 2000px;
+    width: 3000px;
     position: fixed;
     background-size:contain;
     background-repeat: no-repeat;
 }
 
+.detail{
+    display: flex;
+    align-items: center;
+    position: absolute;
+    width: 50vw;
+    height: 80vh;
+    top: 10vh;
+    left: 22vw;
+    transition: .5s ease;
+}
+
 #btn{
     font-family: 'Fredoka One', cursive;
     position: absolute;
-    left: 47vw;
-    top: 8vh;
+    top: 0vh;
+    left: 46%;
     border: 1px solid;
     background-color: cornsilk;
-    height: 30px;
-    width: 100px;
+    height: fit-content;
+    width: fit-content;
+    font-size: calc(0.1em + 1vw);
     cursor: pointer;
     transition: .5s ease;
 }
@@ -28,8 +40,10 @@
 
 #loaderImg{
     position: absolute;
-    right: 240px;
-    bottom: -50px;
+    width: 60%;
+    height: 80%;
+    right: 15%;
+    bottom: 5%;
 }
 
 #loaderText{
@@ -42,20 +56,16 @@
     justify-content: space-around;
     font-family: 'Fredoka One', cursive;
     color: white;
-    position: absolute;
     background-image: linear-gradient(62deg, #ff650b 0%, #F7CE68 100%);
     box-shadow: 5px 5px 15px rgba(0,0,0,0.9);
-    top: 20vh;
-    left: 50vw;
-    width: 450px;
-    height: 400px;
+    width: 100%;
+    height: 60%;
 }
 
 #img{
-    position: absolute;
+    width: 52%;
+    height: 60%;
     box-shadow: 5px 5px 15px rgba(0,0,0,0.9);
-    top: 20vh;
-    left: 17.5vw;
-    width: 500px;
-    height: 400px;
+    /* width: 500px;
+    height: 400px; */
 }

@@ -45,15 +45,17 @@ export default function Detail() {
 
   return (
     <div className={s.body}>
-      <button id={s.btn} onClick={() => history.goBack()}>🡰Volver</button>
-      {!dog.hasOwnProperty('image') ? <img id={s.img} src={not_found} alt="" /> : <img id={s.img} src={dog.image} alt="" />}
-      <div className={s.card}>
-        {!dog.hasOwnProperty('name') ? <Loader imgStyle={s.loaderImg} textStyle={s.loaderText}/> : null}
-        <span>{data.name}</span>
-        <span>{data.temperament}</span>
-        <span>{data.height}</span>
-        <span>{data.weight}</span>
-        <span>{data.life_span}</span>
+      <div className={s.detail}>
+        <button id={s.btn} onClick={() => history.goBack()}>🡰Volver</button>
+        {!dog.hasOwnProperty('image') ? <img id={s.img} src={not_found} alt="" /> : <img id={s.img} src={dog.image} alt="" />}
+        <div className={s.card}>
+          {!dog.hasOwnProperty('name') ? <Loader imgStyle={s.loaderImg} textStyle={s.loaderText}/> : null}
+          <span>{data.name}</span>
+          <span>{data.temperament}</span>
+          <span>{data.height}</span>
+          <span>{data.weight}</span>
+          <span>{data.life_span}</span>
+        </div>
       </div>
     </div>
   )

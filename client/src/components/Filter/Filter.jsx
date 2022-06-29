@@ -2,6 +2,7 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import { getDogs, getDogsByTemper, getDogsByOrigin } from '../../actions'
 import SelectTemper from '../SelectTemper/SelectTemper'
+import bone from '../../images/bone2.png'
 import s from './Filter.module.css'
 export default function Filter({state, setState}) {
     let dispatch = useDispatch()
@@ -44,6 +45,10 @@ export default function Filter({state, setState}) {
                         <option value="API">API</option>
                         <option value="Created">Creada</option>
                     </select>
+                    <div className={s.filterBones}>
+                        <img className={s.bone1} src={bone} alt="" />
+                        <img className={s.bone2} src={bone} alt="" />
+                    </div>
         </div>
     )
 }

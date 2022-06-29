@@ -7,7 +7,6 @@ import Paging from '../Paging/Paging'
 import Loader from '../Loader/Loader'
 import Filter from '../Filter/Filter'
 import Sorts from '../Sorts/Sorts'
-import bone from '../../images/bone2.png'
 import SearchName from '../SearchName/SearchName'
 import dogHouse from '../../images/dog-house.png'
 import { Link } from 'react-router-dom'
@@ -40,40 +39,39 @@ export default function Home() {
     //(numberOfPage - 1) * cardsPerPage 0*8=0, 1*8=8, 2*8=16
     //(numberOfPage - 1) * cardsPerPage + cardsPerPage 0*8+8 = 8, 1*8+8=16, 2*8 + 8=24
     return (
-        <div className={s.body}>
-            <img id={s.dogHouse} src={dogHouse} alt="" />
-            <Paging className={s.paging}setNumber={setNumberOfPage} max={maxNumberOfPages} actualPage={numberOfPage} />  
-            <Link to='/create'>
-                <button id={s.create}>Crear raza</button>
-            </Link>
-            <div className={s.filterBones}>
-                <img className={s.bone} src={bone} alt="" />
-                <img className={s.bone} src={bone} alt="" />
+        <div className={dogs.length === 0 ? s.bodyNoDogs : s.bodyDogs}>
+            <div className={s.column}>
+                <div className={s.dogHouse}>
+                    <img id={s.house} src={dogHouse} alt="" />
+                    <Link to='/create'>
+                        <button id={s.create}>Crear raza</button>
+                    </Link>
+                </div>
+                <Filter state={select} setState={setSelect}/>
+                <Sorts  state={select} setState={setSelect}/>
             </div>
-            <div className={s.sortsBones}>
-                <img className={s.bone} src={bone} alt="" />
-                <img className={s.bone} src={bone} alt="" />
-            </div>
-            <SearchName state={select} setState={setSelect}/>
-            <Filter state={select} setState={setSelect}/>
-            <Sorts  state={select} setState={setSelect}/>
-            <div className={s.cards}>
-                
-                {dogs.length === 0
-                ? not_found === ''
-                ? <Loader textStyle={s.loadingText}/>
-                : <span id={s.not_found}>No se encontró ningun perro!</span>
-                : dogs.slice(
-                    (numberOfPage - 1) * cardsPerPage,
-                    (numberOfPage - 1) * cardsPerPage + cardsPerPage
-                ).map(d => <Dog
-                    key={d.id}
-                    id={d.id}
-                    imagen={d.image}
-                    nombre={d.name}
-                    temperamento={d.temperament}
-                    peso={d.weight}
-                    />)}
+            <div className={s.searchDog}>
+                <div className={s.searchBar}>
+                    <SearchName state={select} setState={setSelect}/>
+                    <Paging setNumber={setNumberOfPage} max={maxNumberOfPages} actualPage={numberOfPage} />  
+                </div>
+                <div className={s.cards}>
+                    {dogs.length === 0
+                    ? not_found === ''
+                    ? <Loader textStyle={s.loadingText}/>
+                    : <span id={s.not_found}>No se encontró ningun perro!</span>
+                    : dogs.slice(
+                        (numberOfPage - 1) * cardsPerPage,
+                        (numberOfPage - 1) * cardsPerPage + cardsPerPage
+                    ).map(d => <Dog
+                        key={d.id}
+                        id={d.id}
+                        imagen={d.image}
+                        nombre={d.name}
+                        temperamento={d.temperament}
+                        peso={d.weight}
+                        />)}
+                </div>
             </div>
         </div>
     )

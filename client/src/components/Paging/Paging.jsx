@@ -20,7 +20,7 @@ export default function Paging({setNumber, max, actualPage}) {
     }
 
     return (
-        <div>
+        <div className={s.paging}>
             <div className={s.arrowsContainer}>
                 <button className={s.arrows} disabled={actualPage === 1 ? true : false} onClick={() => setNumber(prev => prev - 1)}>🡰</button>
                 <span>{actualPage} de {max}</span>

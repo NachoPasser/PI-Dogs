@@ -1,7 +1,6 @@
 .search{
-    position: absolute;
-    top: 64px;
-    left: 30vw;
+    position: relative;
+    left: 10%;
     z-index: 1;
 }
 

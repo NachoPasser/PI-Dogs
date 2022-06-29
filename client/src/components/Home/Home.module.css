@@ -1,49 +1,59 @@
-.body{
+.bodyNoDogs{
     background-image: url('../../images/paws1.png');
-    width: 98.8vw;
-    height: 126vh;
+    background-size: cover;
+    width: 100vw;
+    height: 125vh;
+    position: relative;
+}
+
+.bodyDogs{
+    background-image: url('../../images/paws1.png');
+    background-size: cover;
+    width: 100vw;
+    height: fit-content;
+    position: relative;
+}
+
+.column{
+    position: absolute;
+    top: 0;
+    width: 280px;
+    height: 915px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.searchBar{
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100px;
+}
+
+.searchDog{
+    position: relative;
+    top: 40px;
+    left: 300px;
+    width: 81%;
 }
 .cards{
-    position: absolute;
-    left: 300px;
-    top: 20vh;
+    position: relative;
     display: flex;
     flex-wrap: wrap;
-    width: 79vw;
-    height: 90vh;
+    width: 100%;
+    height: fit-content;
     justify-content: center;
     background: transparent;
 }
 
-.bone{
-    z-index: 1;
-    display: block;
-    width:200px;
-    height:200px;
-    margin:-90px;
-}
-
-.filterBones{
-    z-index: 1;
-    display: block;
-    position: absolute;
-    left: 136px;
-    top: 284px;
-}
-
-.sortsBones{
-    z-index: 1;
-    display: block;
-    position: absolute;
-    left: 136px;
-    bottom: -11.5vh;
-}
-
 #create{
     position: absolute;
-    left: 3.12cm;
-    top:3.85cm;
-    width: 56px;
+    bottom: 10px;
+    right: 37.5%;
+    width: 25%;
     color: white;
     font-size: 15px;
     font-family: 'Fredoka One', cursive;
@@ -56,14 +66,22 @@
 #create:hover{
     color: black;
     background-color: lightgray;
-    transform: scale(1.02);
+    transform: scale(1.2);
 }
 
-#dogHouse{
-    position: absolute;
-    width:200px;
-    height:192px;
-    left: 1.2cm;
+.dogHouse{
+    position: relative;
+    height: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: end;
+}
+
+#house{
+    position: relative;
+    width:100%;
+    max-height: 100%;
 }
 
 #loadingText{
