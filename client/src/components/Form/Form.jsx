@@ -6,6 +6,7 @@ import s from './Form.module.css'
 import dog from '../../images/dogForm.png'
 import dog2 from '../../images/dogForm2.png'
 import sign from '../../images/sign.png'
+import { API_URL } from '../../config/enviroment';
 
 export default function Form() {
     let history = useHistory()
@@ -160,7 +161,7 @@ export default function Form() {
             life_span: form.min_life_span !== form.max_life_span ? `${form.min_life_span} - ${form.max_life_span} years` : `${form.min_life_span} years`,
             temperament: tempers 
         }
-        axios.post('http://localhost:3001/dogs', dog)
+        axios.post(`${API_URL}/dogs`, dog)
         history.push('/home')
     }
     
