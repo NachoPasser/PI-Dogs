@@ -68,7 +68,6 @@
 
     .divBone{
         position: relative;
-        border: 3px solid red;
         width: fit-content;
         top: 450px;
         left: 0px;

@@ -10,6 +10,7 @@ import Sorts from '../Sorts/Sorts'
 import SearchName from '../SearchName/SearchName'
 import dogHouse from '../../images/dog-house.png'
 import { Link } from 'react-router-dom'
+import { getTemperaments } from '../../actions/index'
 
 export default function Home() {
     let dispatch = useDispatch()
@@ -27,13 +28,14 @@ export default function Home() {
     const cardsPerPage = 8
 
     useEffect(() => {
+        dispatch(getTemperaments())
         dispatch(getDogs())
     }, [])
 
     useEffect(() => {
         setNumberOfPage(1)
     }, [dogs])
-    
+
     if(dogs.length > 0) maxNumberOfPages = Math.ceil(dogs.length / cardsPerPage)
     
     //(numberOfPage - 1) * cardsPerPage 0*8=0, 1*8=8, 2*8=16

@@ -1,4 +1,4 @@
-const { Dog, Temper } = require('../db.js');
+const { Dog, Temper, AmountDogs } = require('../db.js');
 const axios = require('axios');
 const {MY_API_KEY} = process.env;
 const API_KEY = `api_key=${MY_API_KEY}`
@@ -7,6 +7,21 @@ const getDogs = async (req, res) => {
     const {name} = req.query
     try {
         let dogs = await axios(`https://api.thedogapi.com/v1/breeds?${API_KEY}`)
+        
+        const numbersList = await AmountDogs.findAll()
+        if(numbersList.length){
+            const numberSaved = numbersList[0]
+            if(numberSaved.getDataValue('number') !== dogs.data.length){
+                await numberSaved.update({
+                    number: dogs.data.length
+                })
+                await numberSaved.save()
+            }
+        } else{
+            await AmountDogs.create({
+                number: dogs.data.length
+            })
+        }
 
         let dbDogs = await Dog.findAll({ //obtengo todos los perros de la base de datos incluyendo su temperamento
             include: {
@@ -47,6 +62,7 @@ const getDogs = async (req, res) => {
         }
         
     } catch (error) {
+        console.log(error)
         res.status(400).send(error)
     }
 }
@@ -110,29 +126,30 @@ const addDog = async (req, res) => {
 }
 
 const getTemperament = async (req, res) => { //Agrego a la tabla Temper todos los temperamentos de la API
+    const tempers = await Temper.findAll()
+    const amountDogsSaved = await AmountDogs.findAll()
     let dogs = await axios(`https://api.thedogapi.com/v1/breeds?${API_KEY}`)
-    dogs.data.forEach(d => {
-        if(d.temperament){
-            let temperamentos = d.temperament.split(', ')
-            temperamentos.map(async temper => {
-                Temper.findOrCreate({
-                    where: {
-                        name: temper
-                    }
+
+    if(amountDogsSaved.length === 0 || amountDogsSaved[0].getDataValue('number') !== dogs.data.length){
+
+        let temperaments = []
+        dogs.data.forEach(d => {
+            if(d.temperament){
+                let temperamentos = d.temperament.split(', ')
+                temperamentos.map(temper => {
+                   if(!temperaments.includes(temper)) temperaments.push(temper)
                 })
+            }
+        })
+
+        for(const temper of temperaments){
+            await Temper.create({
+                name: temper
             })
-            
         }
-    })
-    
-    if(res){
-        const tempers = await Temper.findAll()
-        res.json(tempers)
     }
+    res.json(tempers)
 }
-
-// getTemperament() esto lo hago solo si force:true, ya que lo requiero para crear perros, caso contrario no es necesario 
-
 module.exports = {
     getDogs,
     getDogById,

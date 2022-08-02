@@ -3,12 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { getTemperaments } from '../../actions'
 
 export default function SelectTemper({handleSelect, style, value, disabled}){
-    let dispatch = useDispatch()
-    const temperaments = useSelector(state => state.temperaments)
-    
-    useEffect(() => {
-        dispatch(getTemperaments())
-    }, [])
+  const temperaments = useSelector(state => state.temperaments)
 
   return (
     <div id={style}>
